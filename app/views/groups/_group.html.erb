@@ -1,0 +1,54 @@
+<%= error_messages_for :group %>
+<%= form_tag(@group, { :method => put_or_post(@group), :remote => true, :class => 'ajax_request' }) do %>
+
+  <h3>Group Info</h3>
+  <div class="section">
+    <table>
+      <tr>
+        <td><label>Name:</label></td>
+        <td><%= text_field :group, :name, :size => 20 %></td>
+      </tr>
+    </table>
+  </div>
+
+  <% unless @group.id.nil? %>
+    <h3>Group Members</h3>
+    <div class="section">
+      <div id="displayGroupMembers">
+        <ul>
+          <div id="groupMembers">
+            <%=
+              @included.sort! { |x,y| x.compare_by_primary_contact(y) }
+              render :partial => 'group_list', :collection => @included
+            %>
+          </div>
+        </ul>
+
+        <%= link_to('Maintain Group Members', '#', :class => 'maintain_group_members_link') %>
+      </div>
+
+      <div id="editGroupMembers" style="display:none;">
+        <%= render :partial => 'maintain_group_members' %>
+      </div>
+    </div>
+
+    <h3>Labels</h3>
+    <div class="section">
+      <label>Label Type:</label>
+      <%= select_tag :label_type, get_label_options(@label_types),
+            { :id => 'labelTypeSelector',
+              :onchange => "updateCreateLabelsLink('#{url_for(:action => :create_labels, :id => @group)}');" } %>
+
+      <span id="createLabelsLink">
+        <%= link_to 'Create Labels', create_labels_group_path(@group, :label_type => @label_types.first) %>
+      </span>
+    </div>
+  <% end %>
+
+  <br />
+  <div class="buttons">
+    <%= submit_tag 'Save', :class => 'positive', :onclick => 'selectAllIncludedGroupMembers();' %>
+  </div>
+<% end %>
+
+<%= create_cancel_delete_links(@group) %>

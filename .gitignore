@@ -1,0 +1,14 @@
+.bundle
+.powenv
+.ruby-version
+db/development.sqlite3
+db/schema.rb
+log/*
+public/mailing_labels.pdf
+tmp/*
+*.swp
+coverage
+.rvmrc
+Capfile
+config/deploy.rb
+config/application_config.yml

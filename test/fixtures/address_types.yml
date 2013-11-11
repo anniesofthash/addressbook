@@ -1,0 +1,15 @@
+individual:
+  description: 'Individual'
+
+family:
+  description: 'Family'
+
+married_couple:
+  description: 'Married Couple'
+
+unmarried_couple:
+  description: 'Unmarried Couple'
+
+single_parent:
+  description: 'Single Parent'
+  

@@ -1,0 +1,21 @@
+<%= error_messages_for :address %>
+
+<%= form_tag(settings_update_address_path, { :method => :put, :remote => true, :class => 'ajax_request' }) do %>
+  <h3>Home Address</h3>
+  <p>
+    If a home address is specified, it is used to calculate directions from the home
+    address to the address of your contacts.
+  </p>
+  <div class="section">
+    <%= render :partial => 'shared/address_fields', :locals => { :address => @address, :disable_address2 => true } %>
+  </div>
+
+  <br />
+  <div class="buttons">
+    <%= submit_tag "Save", :class => "positive" %>
+  </div>
+<% end %>
+
+<div class="buttons">
+  <%= button_to("Cancel", settings_edit_address_path, :method => :get, :remote => true, :class => 'ajax_request regular') %>
+</div>

@@ -35,7 +35,7 @@ class SettingsController < ApplicationController
   private
 
   def settings_params
-    params.permit({:address => [:address1, :address2, :city, :state, :zip]}, :username, :password, :password_confirmation, :current_password)
+    params
   end
 
 end

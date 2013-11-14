@@ -9,7 +9,7 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new(group_params[:group])
+    @group = Group.new(group_params)
     @saved = @group.save
     @group_list = Group.find_for_list
     include_common_data
@@ -54,7 +54,7 @@ class GroupsController < ApplicationController
   end
 
   def group_params
-    params.permit(:group => [:name], :included => [])
+    params[:group]
   end
 
 end
